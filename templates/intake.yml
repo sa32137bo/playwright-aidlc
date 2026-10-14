@@ -1,0 +1,69 @@
+# Bolt intake — one bolt = one story = one PR.
+# Copy to bolts/<ID>/intake.yml, or let /bolt create it by interviewing you.
+# Most fields inherit from e2e.config.yml; only override what differs.
+
+bolt_id: ""
+intent: ""                      # one sentence: what a user can now do
+
+mode: "{{MODE}}"                # inherits from e2e.config.yml; override per bolt if needed
+
+# ---- Story source: pick ONE ----
+story_file: ""                  # inputs/stories/CHK-42.md
+                                # Also how `pw-aidlc story-diff` finds a story that
+                                # is not named <ID>.md — set it if you rename one.
+jira_key: ""                    # CHK-42 — fetched once via MCP and cached to inputs/stories/
+# characterization mode needs neither.
+
+acceptance_criteria: []         # inline alternative to a story file
+
+scope:
+  routes: []                    # ["/checkout", "/cart"]
+  source_paths: []              # ["src/checkout/**"] — narrows the code scan.
+                                # Set this and grounding gets much cheaper: the
+                                # scan only reads the subtree the bolt touches.
+  exclude: []
+
+roles: []                       # override config roles for this bolt
+
+# Flag state these tests assume, e.g.  new_checkout: true
+feature_flags:
+
+code_grounding: ""              # blank = inherit source.grounding from e2e.config.yml
+                                # off | scan | deep — override for this bolt only.
+                                # Named "code_grounding", not "grounding", on
+                                # purpose: Knowledge Assistant grounding (see
+                                # e2e-intake step 4a) is a completely separate,
+                                # independently-gated source. This field affects
+                                # neither reading knowledge/*.md nor calling
+                                # Knowledge Assistant — only whether source code
+                                # gets scanned.
+
+autonomy: ""                    # blank = inherit config
+risk: "medium"                  # low | medium | high
+                                # `high` forces code_grounding to deep, overriding
+                                # the project default. The escalation is stated at
+                                # Gate 1 and in audit.md so nobody is surprised
+                                # by a slow bolt.
+max_scenarios: 0                # 0 = inherit config
+
+# ---- Regression bolts ----
+# When a bolt exists because code changed rather than because a story is new:
+since: ""                       # git ref the change is measured from, e.g. "main"
+                                # or a release tag. `pw-aidlc impact --since <ref>`
+                                # lists which specs it touches and which changed
+                                # files nothing covers yet.
+
+# ---- Test data — required when a check reads data the tests did not create ----
+# Reports, searches, dashboards and bug re-tests read whatever is already in the
+# environment. The bolt must not guess this data. Give one entry per screen: every
+# filter value, where it came from, and what the result must contain for the
+# check to mean anything. Leave a value blank and e2e-intake will ask.
+test_data: []
+#  - screen: "Orders Report"
+#    slice: ""                  # name of a known-good slice the project already keeps
+#                               # (e.g. a constant in tests/support/fixtures.ts). Use
+#                               # it instead of `filters:` when one exists.
+#    filters: { region: "EU", store: "Berlin Mitte", from: "9/1/2026", to: "9/25/2026" }
+#    source: "domain expert, 2026-09-25"        # ticket | domain expert | bolt-chosen (unverified)
+#    must_contain: "at least one refunded order"  # the condition under test
+#    known_good_output: ""   # a real export for this input, if one exists — outside git when it holds customer data

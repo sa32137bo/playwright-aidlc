@@ -1,0 +1,984 @@
+{
+  "releaseItems": [
+    {
+      "id": "US-MDUI-CUST-001",
+      "releaseId": "rel_27aug",
+      "type": "requirement",
+      "title": "Create a FleetNet customer and verify it via Customer ID search",
+      "sourceSystem": "jira",
+      "hasGeneratedCases": true,
+      "pipelineStatus": {
+        "requirements": "complete",
+        "testCases": "complete",
+        "scripts": "complete",
+        "execution": "complete"
+      },
+      "badge": "Needs attention",
+      "statusText": "Ready for test case generation",
+      "sourceLabel": "JIRA"
+    },
+    {
+      "id": "US-MDUI-CUST-014",
+      "releaseId": "rel_27aug",
+      "type": "requirement",
+      "title": "Add Tax Exemption Certificate field to General step",
+      "sourceSystem": "jira",
+      "hasGeneratedCases": false,
+      "pipelineStatus": {
+        "requirements": "complete",
+        "testCases": "not_started",
+        "scripts": "not_started",
+        "execution": "not_started"
+      },
+      "badge": "Not started",
+      "statusText": "New",
+      "sourceLabel": "JIRA"
+    },
+    {
+      "id": "STORY-014",
+      "releaseId": "rel_27aug",
+      "type": "requirement",
+      "title": "Support advanced search filters on Customer / Fleet Search",
+      "sourceSystem": "git",
+      "sourceFile": "stories/fleetnet-customer-stories.md",
+      "hasGeneratedCases": false,
+      "pipelineStatus": {
+        "requirements": "complete",
+        "testCases": "not_started",
+        "scripts": "not_started",
+        "execution": "not_started"
+      },
+      "badge": "Not started",
+      "statusText": "Synced from git",
+      "sourceLabel": "Git Repo"
+    },
+    {
+      "id": "STORY-015",
+      "releaseId": "rel_27aug",
+      "type": "requirement",
+      "title": "Refine Department management within the FleetNet wizard",
+      "sourceSystem": "git",
+      "sourceFile": "stories/fleetnet-customer-stories.md",
+      "hasGeneratedCases": false,
+      "pipelineStatus": {
+        "requirements": "complete",
+        "testCases": "not_started",
+        "scripts": "not_started",
+        "execution": "not_started"
+      },
+      "badge": "Not started",
+      "statusText": "Synced from git",
+      "sourceLabel": "Git Repo"
+    },
+    {
+      "id": "SPEC-DOC-001",
+      "releaseId": "rel_27aug",
+      "type": "specDocument",
+      "filename": "MDUI_FleetNet_Tax_Exemption_Addendum.docx",
+      "size": "128 KB",
+      "uploadedAt": "2026-08-25T10:00:00Z",
+      "hasGeneratedCases": false,
+      "pipelineStatus": {
+        "requirements": "not_applicable",
+        "testCases": "not_started",
+        "scripts": "not_started",
+        "execution": "not_started"
+      },
+      "badge": "Not started",
+      "sourceLabel": ""
+    },
+    {
+      "id": "req_stub_inputs-stories-us-mdui-cust-001-md",
+      "type": "requirement",
+      "releaseId": "rel_27aug",
+      "pipelineStatus": {
+        "requirements": "not_applicable",
+        "testCases": "in_progress",
+        "scripts": "in_progress",
+        "execution": "not_applicable"
+      },
+      "badge": "Not started",
+      "sourceLabel": "",
+      "title": "inputs/stories/US-MDUI-CUST-001.md",
+      "sourceSystem": "bolt",
+      "sourceFile": "inputs/stories/US-MDUI-CUST-001.md",
+      "hasGeneratedCases": false,
+      "statusText": "Ingested from a bolt \u2014 not yet reconciled with a real requirements sync",
+      "stub": true,
+      "boltIds": [
+        "US-MDUI-CUST-001"
+      ]
+    }
+  ],
+  "testCases": [
+    {
+      "id": "TC_01",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Access Customer / Fleet Search",
+      "precondition": "User is logged into MDUI with a valid session.",
+      "steps": [
+        "Navigate to Accounts / Fleets.",
+        "Click Customer / Fleet Search.",
+        "Confirm the Customer / Fleet Search page loads."
+      ],
+      "expectedResult": "The Customer / Fleet Search heading and search form are visible.",
+      "testDataRequirement": "None \u2014 read-only navigation, no persisted record required.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_02",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Start FleetNet customer creation from search",
+      "precondition": "User is on the Customer / Fleet Search page.",
+      "steps": [
+        "Click Create.",
+        "Select FleetNet Customer.",
+        "Confirm the General step of the creation wizard loads."
+      ],
+      "expectedResult": "The wizard opens on the General step with all fields empty.",
+      "testDataRequirement": "None \u2014 exercises navigation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_03",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Verify General step field set",
+      "precondition": "User is on the General step of a new FleetNet customer.",
+      "steps": [
+        "Review the General step layout.",
+        "Confirm Customer Name, Licensee, System, Division, and Account Product Type fields are present."
+      ],
+      "expectedResult": "All documented General step fields are visible and correctly labeled.",
+      "testDataRequirement": "None \u2014 exercises layout only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_04",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Complete General customer information",
+      "precondition": "User is on the General step of a new FleetNet customer.",
+      "steps": [
+        "Enter a valid Customer Name.",
+        "Select a Licensee.",
+        "Select System and Division for the chosen Licensee.",
+        "Select a valid Account Product Type.",
+        "Click Next."
+      ],
+      "expectedResult": "General step validates successfully and the wizard advances to Financial.",
+      "testDataRequirement": "1 Licensee with a valid Division and Account Product Type.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_05",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Verify Division options populate for the selected Licensee",
+      "precondition": "User has selected a Licensee on the General step.",
+      "steps": [
+        "Select a Licensee.",
+        "Open the Division dropdown.",
+        "Confirm Division options are populated for that Licensee."
+      ],
+      "expectedResult": "Division options populate correctly for the selected Licensee.",
+      "testDataRequirement": "A Licensee with reference-data-configured Division options.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_06",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Validate missing General mandatory data",
+      "precondition": "User is on the General step with mandatory fields empty.",
+      "steps": [
+        "Leave Customer Name, Licensee, and Account Product Type empty.",
+        "Click Next.",
+        "Confirm each empty mandatory field is outlined in red."
+      ],
+      "expectedResult": "Save is blocked and every empty mandatory field shows a red-border validation indicator.",
+      "testDataRequirement": "None \u2014 exercises validation only, no persisted record required.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_07",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Assign Volume Group on General step",
+      "precondition": "User has completed required General fields.",
+      "steps": [
+        "Open the Volume Group selector.",
+        "Select a valid Volume Group.",
+        "Confirm it is saved to the record."
+      ],
+      "expectedResult": "The selected Volume Group is retained when the step is saved.",
+      "testDataRequirement": "1 existing Volume Group available for assignment.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_08",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Assign Bill Group and Card Group on General step",
+      "precondition": "User has completed required General fields.",
+      "steps": [
+        "Open the Bill Group selector and select a value.",
+        "Open the Card Group selector and select a value.",
+        "Confirm both are saved to the record."
+      ],
+      "expectedResult": "The selected Bill Group and Card Group are retained when the step is saved.",
+      "testDataRequirement": "1 existing Bill Group and 1 existing Card Group available for assignment.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_09",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Complete Financial step pricing",
+      "precondition": "User has advanced from General to the Financial step.",
+      "steps": [
+        "Enter a valid Price Reference Code.",
+        "Enter a valid Price Reference Amount.",
+        "Click Next."
+      ],
+      "expectedResult": "Financial step validates successfully and the wizard advances to Departments.",
+      "testDataRequirement": "A valid Price Reference Code and Amount configured in reference data.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_10",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Validate missing Financial mandatory data",
+      "precondition": "User is on the Financial step with mandatory fields empty.",
+      "steps": [
+        "Leave Price Reference Code empty.",
+        "Click Next.",
+        "Confirm the field is outlined in red."
+      ],
+      "expectedResult": "Save is blocked and the empty mandatory field shows a red-border validation indicator.",
+      "testDataRequirement": "None \u2014 exercises validation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_11",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Validate Price Reference Code format",
+      "precondition": "User is on the Financial step.",
+      "steps": [
+        "Enter an invalid Price Reference Code (wrong format).",
+        "Attempt to proceed.",
+        "Confirm a validation message is shown."
+      ],
+      "expectedResult": "Invalid Price Reference Code formats are rejected with a clear validation message.",
+      "testDataRequirement": "None \u2014 exercises validation only, no persisted record required.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_12",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Set Customer Lock Status to Locked",
+      "precondition": "FleetNet customer exists with Customer Lock Status currently set to Unlocked.",
+      "steps": [
+        "Open the existing FleetNet customer on the General step.",
+        "Change Customer Lock Status to Locked.",
+        "Confirm Customer Lock Reason becomes a mandatory red-outlined field."
+      ],
+      "expectedResult": "Customer Lock Reason becomes mandatory as soon as Lock Status is set to Locked.",
+      "testDataRequirement": "An existing FleetNet customer with Lock Status currently Unlocked.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_13",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Verify Departments step empty state",
+      "precondition": "User has advanced to the Departments step with no departments yet created.",
+      "steps": [
+        "Advance to the Departments step.",
+        "Confirm the empty-state message is shown.",
+        "Confirm the Access iFleet To Maintain Departments handoff link is visible."
+      ],
+      "expectedResult": "Departments step shows a genuine empty state with a working handoff link \u2014 behavior for adding a department inline is not fully specified.",
+      "testDataRequirement": "A FleetNet customer with no departments configured yet.",
+      "flagged": true,
+      "flagNote": "Departments may be a read-only grid with an \"Access IFleet To Maintain Departments\" link, not directly editable fields \u2014 needs confirming with the platform team.",
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_14",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Verify Access iFleet To Maintain Departments handoff",
+      "precondition": "User is on the Departments step empty state.",
+      "steps": [
+        "Click Access iFleet To Maintain Departments.",
+        "Confirm the handoff behavior (new tab vs. redirect) matches the spec."
+      ],
+      "expectedResult": "The handoff to iFleet occurs as documented \u2014 exact navigation behavior is ambiguous in source material.",
+      "testDataRequirement": "A FleetNet customer with no departments configured yet.",
+      "flagged": true,
+      "flagNote": "Departments may be a read-only grid with an \"Access IFleet To Maintain Departments\" link, not directly editable fields \u2014 needs confirming with the platform team.",
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_15",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Complete Notes step and finish wizard",
+      "precondition": "User has completed General, Financial, and Departments steps.",
+      "steps": [
+        "Enter optional notes text.",
+        "Click Save/Next.",
+        "Confirm the wizard completes successfully."
+      ],
+      "expectedResult": "The FleetNet customer record is created successfully.",
+      "testDataRequirement": "None beyond the record being built through the prior steps.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_16",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Verify FleetNet customer via Customer ID search",
+      "precondition": "A FleetNet customer has just been created.",
+      "steps": [
+        "Navigate to Customer / Fleet Search.",
+        "Search by the new Customer ID.",
+        "Confirm the record is returned."
+      ],
+      "expectedResult": "The newly created FleetNet customer is returned by Customer ID search.",
+      "testDataRequirement": "The FleetNet customer created earlier in this scenario.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_17",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Verify optional fields are not incorrectly marked as required",
+      "precondition": "User is on the General step.",
+      "steps": [
+        "Review all optional fields on the General step.",
+        "Confirm none display a red-border required indicator when empty."
+      ],
+      "expectedResult": "Optional fields are visually distinguishable from mandatory ones and never show as required.",
+      "testDataRequirement": "None \u2014 exercises validation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_18",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "Verify General Info is displayed at the top of subsequent steps",
+      "precondition": "User has advanced past the General step.",
+      "steps": [
+        "Advance to Financial, then Departments, then Notes.",
+        "Confirm a summary of the entered General Info is visible at the top of each step."
+      ],
+      "expectedResult": "General Info summary is displayed consistently across Financial, Departments, and Notes.",
+      "testDataRequirement": "None beyond the record being built through the General step.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_19",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "scenario": "End-to-end FleetNet Customer Create regression",
+      "precondition": "No pre-existing FleetNet customer for this test's Customer Name.",
+      "steps": [
+        "Complete General, Financial, Departments, and Notes steps in full.",
+        "Save the record.",
+        "Verify the record via Customer ID search.",
+        "Confirm all General fields, including the new Tax Exemption Certificate field, are present and correctly saved."
+      ],
+      "expectedResult": "The full FleetNet Customer Create flow completes end-to-end with no regressions, including the newly added field.",
+      "testDataRequirement": "A clean environment with no pre-existing FleetNet customer for this test's Customer Name \u2014 exactly what Test Data provisioning (Synthetic mode) is for.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-001 (Thu 27 Aug release)"
+    },
+    {
+      "id": "TC_R07",
+      "releaseItemId": "US-MDUI-CUST-003",
+      "scenario": "Verify existing FleetNet customers save successfully when a new General field is blank",
+      "precondition": "An existing FleetNet customer created before the newest General field existed.",
+      "steps": [
+        "Open an existing FleetNet customer on the General step.",
+        "Confirm the new field is blank and not pre-populated.",
+        "Confirm no validation error blocks the page from loading.",
+        "Save the record without entering a value for the new field.",
+        "Confirm the save succeeds and no regression is introduced for the existing record."
+      ],
+      "expectedResult": "Existing customers load and save successfully when a newly added General field is blank; no regression is introduced for records created before the field existed.",
+      "testDataRequirement": "An existing FleetNet customer created before the current General-step field set (a pre-migration record) \u2014 a good fit for Volumizer mode rather than Synthetic.",
+      "flagged": false,
+      "reused": true,
+      "inRelease": false,
+      "releaseId": "rel_27aug",
+      "auditLogId": "audit_cust001",
+      "originLabel": "US-MDUI-CUST-003 (Thu 20 Aug release)"
+    }
+  ],
+  "testScripts": [
+    {
+      "id": "script_TC_01",
+      "testCaseIds": [
+        "TC_01"
+      ],
+      "filename": "tc01-access-search.spec.ts",
+      "content": "test('TC_01 - Access Customer / Fleet Search', async ({ page }) => {\n  await page.goto(BASE_URL + '/login');\n  await page.getByLabel('Username').fill(MDUI_USER);\n  await page.getByLabel('Password').fill(MDUI_PASSWORD);\n  await page.getByRole('button', { name: 'Log In' }).click();\n  await page.getByRole('link', { name: 'Accounts / Fleets' }).click();\n  await page.getByRole('link', { name: 'Customer / Fleet Search' }).click();\n  await expect(page.getByRole('heading', { name: 'Customer / Fleet Search' })).toBeVisible();\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_02",
+      "testCaseIds": [
+        "TC_02"
+      ],
+      "filename": "tc02.spec.ts",
+      "content": "test('TC_02 - Start FleetNet customer creation from search', async ({ page }) => {\n  // Generated from approved test case TC_02.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_03",
+      "testCaseIds": [
+        "TC_03"
+      ],
+      "filename": "tc03.spec.ts",
+      "content": "test('TC_03 - Verify General step field set', async ({ page }) => {\n  // Generated from approved test case TC_03.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_04",
+      "testCaseIds": [
+        "TC_04"
+      ],
+      "filename": "tc04-complete-general-info.spec.ts",
+      "content": "test('TC_04 - Complete General customer information', async ({ page }) => {\n  await page.goto(BASE_URL + '/fleetnet/create');\n  await page.getByLabel('Customer Name').fill('Acme Fleet Services');\n  await page.getByLabel('Licensee').selectOption({ label: 'MDUI Test Licensee' });\n  await page.getByLabel('System').selectOption({ label: 'FleetNet' });\n  await page.getByLabel('Division').selectOption({ label: 'East' });\n  await page.getByLabel('Account Product Type').selectOption({ label: 'Standard' });\n  await page.getByRole('button', { name: 'Next' }).click();\n  await expect(page.getByRole('heading', { name: 'Financial' })).toBeVisible();\n  await expect(page.getByLabel('Customer Lock Reason')).toBeDisabled();\n});",
+      "locatorReport": {
+        "totalLocators": 23,
+        "matchedLocators": 19,
+        "llmGeneratedLocators": 4
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_05",
+      "testCaseIds": [
+        "TC_05"
+      ],
+      "filename": "tc05.spec.ts",
+      "content": "test('TC_05 - Verify Division options populate for the selected Licensee', async ({ page }) => {\n  // Generated from approved test case TC_05.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_06",
+      "testCaseIds": [
+        "TC_06"
+      ],
+      "filename": "tc06.spec.ts",
+      "content": "test('TC_06 - Validate missing General mandatory data', async ({ page }) => {\n  // Generated from approved test case TC_06.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_07",
+      "testCaseIds": [
+        "TC_07"
+      ],
+      "filename": "tc07.spec.ts",
+      "content": "test('TC_07 - Assign Volume Group on General step', async ({ page }) => {\n  // Generated from approved test case TC_07.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_08",
+      "testCaseIds": [
+        "TC_08"
+      ],
+      "filename": "tc08.spec.ts",
+      "content": "test('TC_08 - Assign Bill Group and Card Group on General step', async ({ page }) => {\n  // Generated from approved test case TC_08.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_09",
+      "testCaseIds": [
+        "TC_09"
+      ],
+      "filename": "tc09-complete-pricing.spec.ts",
+      "content": "test('TC_09 - Complete Financial step pricing', async ({ page }) => {\n  await page.getByLabel('Price Reference Code').fill('PR-1001');\n  await page.getByLabel('Price Reference Amount').fill('125.00');\n  await page.getByRole('button', { name: 'Next' }).click();\n  await expect(page.getByRole('heading', { name: 'Departments' })).toBeVisible();\n});",
+      "locatorReport": {
+        "totalLocators": 9,
+        "matchedLocators": 8,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_10",
+      "testCaseIds": [
+        "TC_10"
+      ],
+      "filename": "tc10.spec.ts",
+      "content": "test('TC_10 - Validate missing Financial mandatory data', async ({ page }) => {\n  // Generated from approved test case TC_10.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_11",
+      "testCaseIds": [
+        "TC_11"
+      ],
+      "filename": "tc11.spec.ts",
+      "content": "test('TC_11 - Validate Price Reference Code format', async ({ page }) => {\n  // Generated from approved test case TC_11.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_12",
+      "testCaseIds": [
+        "TC_12"
+      ],
+      "filename": "tc12.spec.ts",
+      "content": "test('TC_12 - Set Customer Lock Status to Locked', async ({ page }) => {\n  // Generated from approved test case TC_12.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_13",
+      "testCaseIds": [
+        "TC_13"
+      ],
+      "filename": "tc13-departments-empty-state.spec.ts",
+      "content": "test('TC_13 - Verify Departments step empty state', async ({ page }) => {\n  // NOTE: source material conflicts on inline-add vs. iFleet handoff behavior\n  // for this step (see Test Case Review) \u2014 asserting the empty state only.\n  await expect(page.getByText('No departments yet')).toBeVisible();\n  await expect(page.getByRole('link', { name: 'Access iFleet To Maintain Departments' })).toBeVisible();\n});",
+      "locatorReport": {
+        "totalLocators": 7,
+        "matchedLocators": 5,
+        "llmGeneratedLocators": 2
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_14",
+      "testCaseIds": [
+        "TC_14"
+      ],
+      "filename": "tc14.spec.ts",
+      "content": "test('TC_14 - Verify Access iFleet To Maintain Departments handoff', async ({ page }) => {\n  // Generated from approved test case TC_14.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_15",
+      "testCaseIds": [
+        "TC_15"
+      ],
+      "filename": "tc15.spec.ts",
+      "content": "test('TC_15 - Complete Notes step and finish wizard', async ({ page }) => {\n  // Generated from approved test case TC_15.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_16",
+      "testCaseIds": [
+        "TC_16"
+      ],
+      "filename": "tc16.spec.ts",
+      "content": "test('TC_16 - Verify FleetNet customer via Customer ID search', async ({ page }) => {\n  // Generated from approved test case TC_16.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_17",
+      "testCaseIds": [
+        "TC_17"
+      ],
+      "filename": "tc17.spec.ts",
+      "content": "test('TC_17 - Verify optional fields are not incorrectly marked as required', async ({ page }) => {\n  // Generated from approved test case TC_17.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_18",
+      "testCaseIds": [
+        "TC_18"
+      ],
+      "filename": "tc18.spec.ts",
+      "content": "test('TC_18 - Verify General Info is displayed at the top of subsequent steps', async ({ page }) => {\n  // Generated from approved test case TC_18.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    },
+    {
+      "id": "script_TC_19",
+      "testCaseIds": [
+        "TC_19"
+      ],
+      "filename": "tc19.spec.ts",
+      "content": "test('TC_19 - End-to-end FleetNet Customer Create regression', async ({ page }) => {\n  // Generated from approved test case TC_19.\n});",
+      "locatorReport": {
+        "totalLocators": 8,
+        "matchedLocators": 7,
+        "llmGeneratedLocators": 1
+      },
+      "auditLogId": "audit_cust001",
+      "testScriptProjectId": "tsp_cust001"
+    }
+  ],
+  "testScriptProjects": [
+    {
+      "id": "tsp_cust001",
+      "releaseItemId": "US-MDUI-CUST-001",
+      "commitSha": "a71f938",
+      "branch": "fleetnet-customer-create"
+    }
+  ],
+  "testExecutions": [
+    {
+      "id": "exec_2847",
+      "testScriptProjectId": "tsp_cust001",
+      "runId": "2847",
+      "testedCommit": "a71f938",
+      "branch": "fleetnet-customer-create",
+      "createdAt": "2026-08-27T09:15:00Z"
+    }
+  ],
+  "testResults": [
+    {
+      "id": "result_TC_01",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_01",
+      "testCaseId": "TC_01",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_02",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_02",
+      "testCaseId": "TC_02",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_03",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_03",
+      "testCaseId": "TC_03",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_04",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_04",
+      "testCaseId": "TC_04",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_05",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_05",
+      "testCaseId": "TC_05",
+      "status": "failed",
+      "errorDetail": "Division field returned no options \u2014 the selected Licensee (\"Acme Distribution\") has no dependent divisions populated in this environment."
+    },
+    {
+      "id": "result_TC_06",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_06",
+      "testCaseId": "TC_06",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_07",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_07",
+      "testCaseId": "TC_07",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_08",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_08",
+      "testCaseId": "TC_08",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_09",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_09",
+      "testCaseId": "TC_09",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_10",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_10",
+      "testCaseId": "TC_10",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_11",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_11",
+      "testCaseId": "TC_11",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_12",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_12",
+      "testCaseId": "TC_12",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_13",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_13",
+      "testCaseId": "TC_13",
+      "status": "needs_review"
+    },
+    {
+      "id": "result_TC_14",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_14",
+      "testCaseId": "TC_14",
+      "status": "needs_review"
+    },
+    {
+      "id": "result_TC_15",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_15",
+      "testCaseId": "TC_15",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_16",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_16",
+      "testCaseId": "TC_16",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_17",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_17",
+      "testCaseId": "TC_17",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_18",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_18",
+      "testCaseId": "TC_18",
+      "status": "passed"
+    },
+    {
+      "id": "result_TC_19",
+      "testExecutionId": "exec_2847",
+      "testScriptId": "script_TC_19",
+      "testCaseId": "TC_19",
+      "status": "passed"
+    }
+  ],
+  "activityEvents": [
+    {
+      "id": "act_1",
+      "releaseId": "rel_27aug",
+      "itemId": "US-MDUI-CUST-001",
+      "type": "execution",
+      "summary": "Test execution run #2847 completed for US-MDUI-CUST-001 \u2014 16 passed, 1 failed, 2 flagged.",
+      "actor": "Q. Analyst",
+      "timestamp": "2026-08-27T09:15:00Z"
+    },
+    {
+      "id": "act_2",
+      "releaseId": "rel_27aug",
+      "itemId": "US-MDUI-CUST-001",
+      "type": "script_generation",
+      "summary": "19 Playwright specs pushed to mdui-fleetnet.",
+      "actor": "Q. Analyst",
+      "timestamp": "2026-08-27T09:00:00Z"
+    },
+    {
+      "id": "act_5",
+      "releaseId": "rel_27aug",
+      "itemId": "US-MDUI-CUST-001",
+      "type": "cases_flagged",
+      "summary": "2 test cases flagged during review \u2014 Departments ambiguity.",
+      "actor": "Q. Analyst",
+      "timestamp": "2026-08-27T08:55:00Z"
+    },
+    {
+      "id": "act_3",
+      "releaseId": "rel_27aug",
+      "itemId": "US-MDUI-CUST-001",
+      "type": "case_generation",
+      "summary": "19 test cases generated for US-MDUI-CUST-001 from JIRA requirement.",
+      "actor": "Q. Analyst",
+      "timestamp": "2026-08-27T08:45:00Z"
+    },
+    {
+      "id": "act_6",
+      "releaseId": "rel_27aug",
+      "type": "knowledge_answer",
+      "summary": "Knowledge Assistant answered a question on FleetNet field requirements.",
+      "actor": "Q. Analyst",
+      "timestamp": "2026-08-27T08:00:00Z"
+    },
+    {
+      "id": "act_4",
+      "releaseId": "rel_27aug",
+      "itemId": "SPEC-DOC-001",
+      "type": "upload",
+      "summary": "Specification document uploaded: MDUI_FleetNet_Tax_Exemption_Addendum.docx.",
+      "actor": "Q. Analyst",
+      "timestamp": "2026-08-25T10:00:00Z"
+    },
+    {
+      "id": "act_8a24rim8",
+      "releaseId": "rel_27aug",
+      "itemId": "req_stub_inputs-stories-us-mdui-cust-001-md",
+      "type": "bolt_ingested",
+      "summary": "US-MDUI-CUST-001 ingested \u2014 5 case(s), 5 script(s), 5 result(s).",
+      "actor": "Q. Analyst",
+      "timestamp": "2026-09-10T09:46:44.692Z"
+    }
+  ]
+}

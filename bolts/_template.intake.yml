@@ -1,0 +1,27 @@
+# Bolt intake — one bolt = one story = one PR.
+# Copy to bolts/<ID>/intake.yml, or let /bolt create it by interviewing you.
+# Most fields inherit from e2e.config.yml; only override what differs.
+
+bolt_id: ""
+intent: ""                      # one sentence: what a user can now do
+
+mode: "brownfield"                # inherits from e2e.config.yml; override per bolt if needed
+
+# ---- Story source: pick ONE ----
+story_file: ""                  # inputs/stories/CHK-42.md
+jira_key: ""                    # CHK-42 — fetched once via MCP and cached to inputs/stories/
+# characterization mode needs neither.
+
+acceptance_criteria: []         # inline alternative to a story file
+
+scope:
+  routes: []                    # ["/checkout", "/cart"]
+  source_paths: []              # ["src/checkout/**"] — narrows the code scan
+  exclude: []
+
+roles: []                       # override config roles for this bolt
+feature_flags: {}               # flag state these tests assume
+
+autonomy: ""                    # blank = inherit config
+risk: "medium"                  # low | medium | high
+max_scenarios: 0                # 0 = inherit config

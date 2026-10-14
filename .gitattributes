@@ -1,0 +1,11 @@
+# Seed documents for scripts/seed_knowledge_assistant.py are real Office
+# binaries (ZIP-based), never text. Without this, a Windows checkout with
+# core.autocrlf=true (a common default) rewrites line-ending bytes inside the
+# ZIP structure and silently corrupts the file - it would still "upload"
+# successfully (upload_file only checks the HTTP response), just as garbage
+# bytes knowledge-service's parser then fails on or indexes nonsense from.
+*.docx binary
+*.doc binary
+*.pdf binary
+*.xlsx binary
+*.pptx binary

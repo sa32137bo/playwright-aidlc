@@ -1,0 +1,1574 @@
+{
+  "releaseItems": [
+    {
+      "id": "US-MDUI-CUST-002",
+      "releaseId": "rel_20aug",
+      "type": "requirement",
+      "title": "Implement FleetNet customer creation wizard (General \u2192 Financial \u2192 Departments \u2192 Notes)",
+      "sourceSystem": "jira",
+      "hasGeneratedCases": true,
+      "pipelineStatus": {
+        "requirements": "complete",
+        "testCases": "complete",
+        "scripts": "complete",
+        "execution": "complete"
+      },
+      "badge": "Shipped",
+      "statusText": "Shipped",
+      "sourceLabel": "JIRA"
+    },
+    {
+      "id": "US-MDUI-CUST-003",
+      "releaseId": "rel_20aug",
+      "type": "requirement",
+      "title": "Enforce mandatory field validation across all FleetNet wizard steps",
+      "sourceSystem": "jira",
+      "hasGeneratedCases": true,
+      "pipelineStatus": {
+        "requirements": "complete",
+        "testCases": "complete",
+        "scripts": "complete",
+        "execution": "complete"
+      },
+      "badge": "Shipped",
+      "statusText": "Shipped",
+      "sourceLabel": "JIRA"
+    },
+    {
+      "id": "US-MDUI-CUST-004",
+      "releaseId": "rel_20aug",
+      "type": "requirement",
+      "title": "Support Volume Group, Bill Group and Card Group assignment on General step",
+      "sourceSystem": "jira",
+      "hasGeneratedCases": true,
+      "pipelineStatus": {
+        "requirements": "complete",
+        "testCases": "complete",
+        "scripts": "complete",
+        "execution": "complete"
+      },
+      "badge": "Shipped",
+      "statusText": "Shipped",
+      "sourceLabel": "JIRA"
+    },
+    {
+      "id": "US-MDUI-CUST-005",
+      "releaseId": "rel_20aug",
+      "type": "requirement",
+      "title": "Add Customer Lock Status and Lock Reason handling",
+      "sourceSystem": "jira",
+      "hasGeneratedCases": true,
+      "pipelineStatus": {
+        "requirements": "complete",
+        "testCases": "complete",
+        "scripts": "complete",
+        "execution": "complete"
+      },
+      "badge": "Shipped",
+      "statusText": "Shipped",
+      "sourceLabel": "JIRA"
+    },
+    {
+      "id": "STORY-009",
+      "releaseId": "rel_20aug",
+      "type": "requirement",
+      "title": "Add Customer / Fleet Search by Customer ID",
+      "sourceSystem": "git",
+      "sourceFile": "stories/fleetnet-customer-stories.md",
+      "hasGeneratedCases": true,
+      "pipelineStatus": {
+        "requirements": "complete",
+        "testCases": "complete",
+        "scripts": "complete",
+        "execution": "complete"
+      },
+      "badge": "Shipped",
+      "statusText": "Shipped",
+      "sourceLabel": "Git Repo"
+    },
+    {
+      "id": "STORY-010",
+      "releaseId": "rel_20aug",
+      "type": "requirement",
+      "title": "Validate Price Reference Code and Amount on Financial step",
+      "sourceSystem": "git",
+      "sourceFile": "stories/fleetnet-customer-stories.md",
+      "hasGeneratedCases": true,
+      "pipelineStatus": {
+        "requirements": "complete",
+        "testCases": "complete",
+        "scripts": "complete",
+        "execution": "complete"
+      },
+      "badge": "Shipped",
+      "statusText": "Shipped",
+      "sourceLabel": "Git Repo"
+    },
+    {
+      "id": "US-MDUI-CUST-006",
+      "releaseId": "rel_20aug",
+      "type": "requirement",
+      "title": "Support Department creation and \"Access IFleet To Maintain Departments\" handoff link",
+      "sourceSystem": "jira",
+      "hasGeneratedCases": true,
+      "pipelineStatus": {
+        "requirements": "complete",
+        "testCases": "complete",
+        "scripts": "complete",
+        "execution": "complete"
+      },
+      "badge": "Shipped",
+      "statusText": "Shipped",
+      "sourceLabel": "JIRA"
+    },
+    {
+      "id": "SPEC-DOC-000",
+      "releaseId": "rel_20aug",
+      "type": "specDocument",
+      "filename": "MDUI_FleetNet_Wizard_Baseline_Testscenario.docx",
+      "size": "340 KB",
+      "uploadedAt": "2026-08-18T10:00:00Z",
+      "hasGeneratedCases": true,
+      "pipelineStatus": {
+        "requirements": "not_applicable",
+        "testCases": "complete",
+        "scripts": "complete",
+        "execution": "complete"
+      },
+      "badge": "Shipped",
+      "sourceLabel": ""
+    }
+  ],
+  "testCases": [
+    {
+      "id": "P002-01",
+      "releaseItemId": "US-MDUI-CUST-002",
+      "scenario": "Access FleetNet customer creation entry point",
+      "precondition": "User is logged into MDUI with a valid session.",
+      "steps": [
+        "Navigate to Accounts / Fleets.",
+        "Click Create.",
+        "Select FleetNet Customer."
+      ],
+      "expectedResult": "The creation wizard opens on the General step.",
+      "testDataRequirement": "None \u2014 exercises navigation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-002 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P002-02",
+      "releaseItemId": "US-MDUI-CUST-002",
+      "scenario": "Verify all four wizard steps are present",
+      "precondition": "The FleetNet customer creation wizard is open.",
+      "steps": [
+        "Review the step indicator across the top of the wizard."
+      ],
+      "expectedResult": "General, Financial, Departments, and Notes are listed in that order.",
+      "testDataRequirement": "None \u2014 exercises layout only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-002 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P002-03",
+      "releaseItemId": "US-MDUI-CUST-002",
+      "scenario": "Complete General step with valid data",
+      "precondition": "User is on the General step.",
+      "steps": [
+        "Enter a valid Customer Name.",
+        "Select Licensee, System, Division, and Account Product Type.",
+        "Click Next."
+      ],
+      "expectedResult": "The wizard advances to the Financial step.",
+      "testDataRequirement": "1 Licensee with a valid Division and Account Product Type.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-002 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P002-04",
+      "releaseItemId": "US-MDUI-CUST-002",
+      "scenario": "Complete Financial step with valid pricing",
+      "precondition": "User has advanced to the Financial step.",
+      "steps": [
+        "Enter a valid Price Reference Code and Amount.",
+        "Click Next."
+      ],
+      "expectedResult": "The wizard advances to the Departments step.",
+      "testDataRequirement": "A valid Price Reference Code and Amount configured in reference data.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-002 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P002-05",
+      "releaseItemId": "US-MDUI-CUST-002",
+      "scenario": "Verify Departments step loads without error",
+      "precondition": "User has advanced to the Departments step.",
+      "steps": [
+        "Confirm the Departments step renders."
+      ],
+      "expectedResult": "The Departments step loads without error (baseline, pre-empty-state-clarification).",
+      "testDataRequirement": "None \u2014 exercises navigation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-002 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P002-06",
+      "releaseItemId": "US-MDUI-CUST-002",
+      "scenario": "Complete Notes step and save",
+      "precondition": "User has completed General, Financial, and Departments.",
+      "steps": [
+        "Enter optional notes text.",
+        "Click Save."
+      ],
+      "expectedResult": "The FleetNet customer record is created successfully.",
+      "testDataRequirement": "None beyond the record being built through the prior steps.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-002 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P002-07",
+      "releaseItemId": "US-MDUI-CUST-002",
+      "scenario": "Verify backward navigation between wizard steps",
+      "precondition": "User has advanced from General to Financial.",
+      "steps": [
+        "Click Back."
+      ],
+      "expectedResult": "The wizard returns to the General step with previously entered data retained.",
+      "testDataRequirement": "None beyond the record being built through the General step.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-002 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P002-08",
+      "releaseItemId": "US-MDUI-CUST-002",
+      "scenario": "Verify mandatory field indicators appear on General step",
+      "precondition": "User is on the General step with mandatory fields empty.",
+      "steps": [
+        "Leave mandatory fields blank.",
+        "Click Next."
+      ],
+      "expectedResult": "Empty mandatory fields are outlined in red and the wizard does not advance.",
+      "testDataRequirement": "None \u2014 exercises validation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-002 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P002-09",
+      "releaseItemId": "US-MDUI-CUST-002",
+      "scenario": "Verify FleetNet customer record persists after wizard completion",
+      "precondition": "A FleetNet customer has just been created.",
+      "steps": [
+        "Reopen the newly created record."
+      ],
+      "expectedResult": "All previously entered data is displayed correctly.",
+      "testDataRequirement": "The FleetNet customer created earlier in this scenario.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-002 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P002-10",
+      "releaseItemId": "US-MDUI-CUST-002",
+      "scenario": "End-to-end wizard completion regression",
+      "precondition": "No pre-existing FleetNet customer for this test's Customer Name.",
+      "steps": [
+        "Complete General, Financial, Departments, and Notes steps in full.",
+        "Save the record."
+      ],
+      "expectedResult": "The record is created with no errors across any step.",
+      "testDataRequirement": "A clean environment with no pre-existing FleetNet customer for this test's Customer Name.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-002 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P003-01",
+      "releaseItemId": "US-MDUI-CUST-003",
+      "scenario": "Validate missing General mandatory fields",
+      "precondition": "User is on the General step with mandatory fields empty.",
+      "steps": [
+        "Leave Customer Name, Licensee, and Account Product Type empty.",
+        "Click Next."
+      ],
+      "expectedResult": "Every empty mandatory field on General shows a red-border validation indicator.",
+      "testDataRequirement": "None \u2014 exercises validation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-003 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P003-02",
+      "releaseItemId": "US-MDUI-CUST-003",
+      "scenario": "Validate missing Financial mandatory fields",
+      "precondition": "User is on the Financial step with Price Reference Code empty.",
+      "steps": [
+        "Leave Price Reference Code empty.",
+        "Click Next."
+      ],
+      "expectedResult": "Price Reference Code shows a red-border validation indicator.",
+      "testDataRequirement": "None \u2014 exercises validation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-003 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P003-03",
+      "releaseItemId": "US-MDUI-CUST-003",
+      "scenario": "Validate Customer Lock Reason becomes mandatory when Locked",
+      "precondition": "FleetNet customer exists with Lock Status Unlocked.",
+      "steps": [
+        "Change Customer Lock Status to Locked."
+      ],
+      "expectedResult": "Customer Lock Reason becomes a mandatory red-outlined field.",
+      "testDataRequirement": "An existing FleetNet customer with Lock Status currently Unlocked.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-003 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P003-04",
+      "releaseItemId": "US-MDUI-CUST-003",
+      "scenario": "Validate optional fields are never marked mandatory",
+      "precondition": "User is on the General step.",
+      "steps": [
+        "Review all optional fields with empty values."
+      ],
+      "expectedResult": "No optional field displays a red-border required indicator.",
+      "testDataRequirement": "None \u2014 exercises validation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-003 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P003-05",
+      "releaseItemId": "US-MDUI-CUST-003",
+      "scenario": "Validate mandatory field state persists across step navigation",
+      "precondition": "A mandatory field on General is left blank.",
+      "steps": [
+        "Attempt to advance.",
+        "Navigate back to General."
+      ],
+      "expectedResult": "The validation indicator on the blank mandatory field is still shown.",
+      "testDataRequirement": "None \u2014 exercises validation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-003 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P003-06",
+      "releaseItemId": "US-MDUI-CUST-003",
+      "scenario": "Verify save is blocked when any step has unresolved mandatory fields",
+      "precondition": "One wizard step has an incomplete mandatory field.",
+      "steps": [
+        "Attempt to Save from the Notes step."
+      ],
+      "expectedResult": "Save is blocked and the user is directed back to the incomplete step.",
+      "testDataRequirement": "None \u2014 exercises validation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-003 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P004-01",
+      "releaseItemId": "US-MDUI-CUST-004",
+      "scenario": "Assign a Volume Group on General step",
+      "precondition": "User has completed required General fields.",
+      "steps": [
+        "Open the Volume Group selector.",
+        "Select a valid Volume Group."
+      ],
+      "expectedResult": "The selected Volume Group is retained when the step is saved.",
+      "testDataRequirement": "1 existing Volume Group available for assignment.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-004 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P004-02",
+      "releaseItemId": "US-MDUI-CUST-004",
+      "scenario": "Assign Bill Group and Card Group on General step",
+      "precondition": "User has completed required General fields.",
+      "steps": [
+        "Open the Bill Group selector and select a value.",
+        "Open the Card Group selector and select a value."
+      ],
+      "expectedResult": "Both selections are retained when the step is saved.",
+      "testDataRequirement": "1 existing Bill Group and 1 existing Card Group available for assignment.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-004 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P004-03",
+      "releaseItemId": "US-MDUI-CUST-004",
+      "scenario": "Verify group selectors show only active groups",
+      "precondition": "At least one inactive Volume Group exists in reference data.",
+      "steps": [
+        "Open the Volume Group selector.",
+        "Review the listed options."
+      ],
+      "expectedResult": "Only active Volume Groups are listed; inactive groups do not appear.",
+      "testDataRequirement": "Reference data including at least one inactive Volume Group.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-004 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P004-04",
+      "releaseItemId": "US-MDUI-CUST-004",
+      "scenario": "Verify group assignments are saved with the customer record",
+      "precondition": "A FleetNet customer has been created with Volume, Bill, and Card Groups assigned.",
+      "steps": [
+        "Reopen the customer record."
+      ],
+      "expectedResult": "All three group assignments persist and display correctly.",
+      "testDataRequirement": "A FleetNet customer created with all three group types assigned.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-004 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P005-01",
+      "releaseItemId": "US-MDUI-CUST-005",
+      "scenario": "Set Customer Lock Status to Locked",
+      "precondition": "FleetNet customer exists with Lock Status Unlocked.",
+      "steps": [
+        "Change Customer Lock Status to Locked."
+      ],
+      "expectedResult": "Customer Lock Reason becomes a mandatory red-outlined field.",
+      "testDataRequirement": "An existing FleetNet customer with Lock Status currently Unlocked.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-005 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P005-02",
+      "releaseItemId": "US-MDUI-CUST-005",
+      "scenario": "Set Customer Lock Status back to Unlocked",
+      "precondition": "FleetNet customer exists with Lock Status Locked and a Lock Reason set.",
+      "steps": [
+        "Change Customer Lock Status to Unlocked."
+      ],
+      "expectedResult": "Customer Lock Reason is no longer mandatory.",
+      "testDataRequirement": "An existing FleetNet customer with Lock Status currently Locked.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-005 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P005-03",
+      "releaseItemId": "US-MDUI-CUST-005",
+      "scenario": "Verify Lock Reason value persists when Locked",
+      "precondition": "FleetNet customer is set to Lock Status Locked.",
+      "steps": [
+        "Enter a Lock Reason.",
+        "Save.",
+        "Reopen the record."
+      ],
+      "expectedResult": "The entered Lock Reason is retained.",
+      "testDataRequirement": "An existing FleetNet customer with Lock Status currently Locked.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-005 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P009-01",
+      "releaseItemId": "STORY-009",
+      "scenario": "Search by exact Customer ID",
+      "precondition": "A FleetNet customer exists with a known Customer ID.",
+      "steps": [
+        "Navigate to Customer / Fleet Search.",
+        "Enter the exact Customer ID.",
+        "Submit the search."
+      ],
+      "expectedResult": "The matching customer record is returned.",
+      "testDataRequirement": "An existing FleetNet customer with a known Customer ID.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "STORY-009 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P009-02",
+      "releaseItemId": "STORY-009",
+      "scenario": "Search by non-existent Customer ID",
+      "precondition": "User is on the Customer / Fleet Search page.",
+      "steps": [
+        "Enter a Customer ID that does not exist.",
+        "Submit the search."
+      ],
+      "expectedResult": "No results are returned and a clear no-match message is shown.",
+      "testDataRequirement": "None \u2014 a deliberately non-existent Customer ID.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "STORY-009 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P009-03",
+      "releaseItemId": "STORY-009",
+      "scenario": "Verify Customer ID search field is available",
+      "precondition": "User is on the Customer / Fleet Search page.",
+      "steps": [
+        "Review the search form."
+      ],
+      "expectedResult": "A Customer ID field is visible alongside the existing search fields.",
+      "testDataRequirement": "None \u2014 exercises layout only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "STORY-009 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P010-01",
+      "releaseItemId": "STORY-010",
+      "scenario": "Validate missing Price Reference Code",
+      "precondition": "User is on the Financial step with Price Reference Code empty.",
+      "steps": [
+        "Leave Price Reference Code empty.",
+        "Click Next."
+      ],
+      "expectedResult": "Save is blocked and the field shows a red-border validation indicator.",
+      "testDataRequirement": "None \u2014 exercises validation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "STORY-010 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P010-02",
+      "releaseItemId": "STORY-010",
+      "scenario": "Validate invalid Price Reference Code format",
+      "precondition": "User is on the Financial step.",
+      "steps": [
+        "Enter a malformed Price Reference Code.",
+        "Attempt to proceed."
+      ],
+      "expectedResult": "A clear validation message is shown and the wizard does not advance.",
+      "testDataRequirement": "None \u2014 exercises validation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "STORY-010 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P010-03",
+      "releaseItemId": "STORY-010",
+      "scenario": "Validate Price Reference Amount accepts only numeric values",
+      "precondition": "User is on the Financial step.",
+      "steps": [
+        "Enter a non-numeric value in Price Reference Amount.",
+        "Attempt to proceed."
+      ],
+      "expectedResult": "The value is rejected with a clear validation message.",
+      "testDataRequirement": "None \u2014 exercises validation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "STORY-010 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P006-01",
+      "releaseItemId": "US-MDUI-CUST-006",
+      "scenario": "Verify Departments step shows Access iFleet handoff link",
+      "precondition": "User has advanced to the Departments step.",
+      "steps": [
+        "Review the Departments step."
+      ],
+      "expectedResult": "The Access iFleet To Maintain Departments link is visible.",
+      "testDataRequirement": "None \u2014 exercises layout only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-006 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P006-02",
+      "releaseItemId": "US-MDUI-CUST-006",
+      "scenario": "Verify the handoff link navigates to iFleet",
+      "precondition": "User is on the Departments step.",
+      "steps": [
+        "Click Access iFleet To Maintain Departments."
+      ],
+      "expectedResult": "The user is navigated to iFleet's department maintenance area.",
+      "testDataRequirement": "None \u2014 exercises navigation only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-006 (Thu 20 Aug release)"
+    },
+    {
+      "id": "P006-03",
+      "releaseItemId": "US-MDUI-CUST-006",
+      "scenario": "Verify Departments step reflects departments maintained in iFleet",
+      "precondition": "A department has just been added for this customer in iFleet.",
+      "steps": [
+        "Return to the Departments step in MDUI."
+      ],
+      "expectedResult": "The department maintained in iFleet is reflected on next load.",
+      "testDataRequirement": "A FleetNet customer with a department maintained via iFleet.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "US-MDUI-CUST-006 (Thu 20 Aug release)"
+    },
+    {
+      "id": "PSD-01",
+      "releaseItemId": "SPEC-DOC-000",
+      "scenario": "Verify wizard matches baseline test scenario document layout",
+      "precondition": "The FleetNet customer creation wizard is open.",
+      "steps": [
+        "Compare each wizard step against the baseline test scenario document."
+      ],
+      "expectedResult": "The wizard matches the documented baseline layout and step order.",
+      "testDataRequirement": "None \u2014 exercises layout only.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "SPEC-DOC-000 (Thu 20 Aug release)"
+    },
+    {
+      "id": "PSD-02",
+      "releaseItemId": "SPEC-DOC-000",
+      "scenario": "Verify baseline regression scenario completes without error",
+      "precondition": "No pre-existing FleetNet customer for this test's Customer Name.",
+      "steps": [
+        "Execute the baseline document's end-to-end scenario in full."
+      ],
+      "expectedResult": "The scenario completes successfully, matching the document's expected outcomes.",
+      "testDataRequirement": "A clean environment with no pre-existing FleetNet customer for this test's Customer Name.",
+      "flagged": false,
+      "inRelease": true,
+      "releaseId": "rel_20aug",
+      "auditLogId": "audit_prior",
+      "originLabel": "SPEC-DOC-000 (Thu 20 Aug release)"
+    }
+  ],
+  "testScripts": [
+    {
+      "id": "script_P002-01",
+      "testCaseIds": [
+        "P002-01"
+      ],
+      "filename": "p002-01.spec.ts",
+      "content": "test('P002-01 - Access FleetNet customer creation entry point', async ({ page }) => {\n  // Generated from approved test case P002-01.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_0"
+    },
+    {
+      "id": "script_P002-02",
+      "testCaseIds": [
+        "P002-02"
+      ],
+      "filename": "p002-02.spec.ts",
+      "content": "test('P002-02 - Verify all four wizard steps are present', async ({ page }) => {\n  // Generated from approved test case P002-02.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_0"
+    },
+    {
+      "id": "script_P002-03",
+      "testCaseIds": [
+        "P002-03"
+      ],
+      "filename": "p002-03.spec.ts",
+      "content": "test('P002-03 - Complete General step with valid data', async ({ page }) => {\n  // Generated from approved test case P002-03.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_0"
+    },
+    {
+      "id": "script_P002-04",
+      "testCaseIds": [
+        "P002-04"
+      ],
+      "filename": "p002-04.spec.ts",
+      "content": "test('P002-04 - Complete Financial step with valid pricing', async ({ page }) => {\n  // Generated from approved test case P002-04.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_0"
+    },
+    {
+      "id": "script_P002-05",
+      "testCaseIds": [
+        "P002-05"
+      ],
+      "filename": "p002-05.spec.ts",
+      "content": "test('P002-05 - Verify Departments step loads without error', async ({ page }) => {\n  // Generated from approved test case P002-05.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_0"
+    },
+    {
+      "id": "script_P002-06",
+      "testCaseIds": [
+        "P002-06"
+      ],
+      "filename": "p002-06.spec.ts",
+      "content": "test('P002-06 - Complete Notes step and save', async ({ page }) => {\n  // Generated from approved test case P002-06.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_0"
+    },
+    {
+      "id": "script_P002-07",
+      "testCaseIds": [
+        "P002-07"
+      ],
+      "filename": "p002-07.spec.ts",
+      "content": "test('P002-07 - Verify backward navigation between wizard steps', async ({ page }) => {\n  // Generated from approved test case P002-07.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_0"
+    },
+    {
+      "id": "script_P002-08",
+      "testCaseIds": [
+        "P002-08"
+      ],
+      "filename": "p002-08.spec.ts",
+      "content": "test('P002-08 - Verify mandatory field indicators appear on General step', async ({ page }) => {\n  // Generated from approved test case P002-08.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_0"
+    },
+    {
+      "id": "script_P002-09",
+      "testCaseIds": [
+        "P002-09"
+      ],
+      "filename": "p002-09.spec.ts",
+      "content": "test('P002-09 - Verify FleetNet customer record persists after wizard completion', async ({ page }) => {\n  // Generated from approved test case P002-09.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_0"
+    },
+    {
+      "id": "script_P002-10",
+      "testCaseIds": [
+        "P002-10"
+      ],
+      "filename": "p002-10.spec.ts",
+      "content": "test('P002-10 - End-to-end wizard completion regression', async ({ page }) => {\n  // Generated from approved test case P002-10.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_0"
+    },
+    {
+      "id": "script_P003-01",
+      "testCaseIds": [
+        "P003-01"
+      ],
+      "filename": "p003-01.spec.ts",
+      "content": "test('P003-01 - Validate missing General mandatory fields', async ({ page }) => {\n  // Generated from approved test case P003-01.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_1"
+    },
+    {
+      "id": "script_P003-02",
+      "testCaseIds": [
+        "P003-02"
+      ],
+      "filename": "p003-02.spec.ts",
+      "content": "test('P003-02 - Validate missing Financial mandatory fields', async ({ page }) => {\n  // Generated from approved test case P003-02.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_1"
+    },
+    {
+      "id": "script_P003-03",
+      "testCaseIds": [
+        "P003-03"
+      ],
+      "filename": "p003-03.spec.ts",
+      "content": "test('P003-03 - Validate Customer Lock Reason becomes mandatory when Locked', async ({ page }) => {\n  // Generated from approved test case P003-03.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_1"
+    },
+    {
+      "id": "script_P003-04",
+      "testCaseIds": [
+        "P003-04"
+      ],
+      "filename": "p003-04.spec.ts",
+      "content": "test('P003-04 - Validate optional fields are never marked mandatory', async ({ page }) => {\n  // Generated from approved test case P003-04.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_1"
+    },
+    {
+      "id": "script_P003-05",
+      "testCaseIds": [
+        "P003-05"
+      ],
+      "filename": "p003-05.spec.ts",
+      "content": "test('P003-05 - Validate mandatory field state persists across step navigation', async ({ page }) => {\n  // Generated from approved test case P003-05.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_1"
+    },
+    {
+      "id": "script_P003-06",
+      "testCaseIds": [
+        "P003-06"
+      ],
+      "filename": "p003-06.spec.ts",
+      "content": "test('P003-06 - Verify save is blocked when any step has unresolved mandatory fields', async ({ page }) => {\n  // Generated from approved test case P003-06.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_1"
+    },
+    {
+      "id": "script_P004-01",
+      "testCaseIds": [
+        "P004-01"
+      ],
+      "filename": "p004-01.spec.ts",
+      "content": "test('P004-01 - Assign a Volume Group on General step', async ({ page }) => {\n  // Generated from approved test case P004-01.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_2"
+    },
+    {
+      "id": "script_P004-02",
+      "testCaseIds": [
+        "P004-02"
+      ],
+      "filename": "p004-02.spec.ts",
+      "content": "test('P004-02 - Assign Bill Group and Card Group on General step', async ({ page }) => {\n  // Generated from approved test case P004-02.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_2"
+    },
+    {
+      "id": "script_P004-03",
+      "testCaseIds": [
+        "P004-03"
+      ],
+      "filename": "p004-03.spec.ts",
+      "content": "test('P004-03 - Verify group selectors show only active groups', async ({ page }) => {\n  // Generated from approved test case P004-03.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_2"
+    },
+    {
+      "id": "script_P004-04",
+      "testCaseIds": [
+        "P004-04"
+      ],
+      "filename": "p004-04.spec.ts",
+      "content": "test('P004-04 - Verify group assignments are saved with the customer record', async ({ page }) => {\n  // Generated from approved test case P004-04.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_2"
+    },
+    {
+      "id": "script_P005-01",
+      "testCaseIds": [
+        "P005-01"
+      ],
+      "filename": "p005-01.spec.ts",
+      "content": "test('P005-01 - Set Customer Lock Status to Locked', async ({ page }) => {\n  // Generated from approved test case P005-01.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_3"
+    },
+    {
+      "id": "script_P005-02",
+      "testCaseIds": [
+        "P005-02"
+      ],
+      "filename": "p005-02.spec.ts",
+      "content": "test('P005-02 - Set Customer Lock Status back to Unlocked', async ({ page }) => {\n  // Generated from approved test case P005-02.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_3"
+    },
+    {
+      "id": "script_P005-03",
+      "testCaseIds": [
+        "P005-03"
+      ],
+      "filename": "p005-03.spec.ts",
+      "content": "test('P005-03 - Verify Lock Reason value persists when Locked', async ({ page }) => {\n  // Generated from approved test case P005-03.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_3"
+    },
+    {
+      "id": "script_P009-01",
+      "testCaseIds": [
+        "P009-01"
+      ],
+      "filename": "p009-01.spec.ts",
+      "content": "test('P009-01 - Search by exact Customer ID', async ({ page }) => {\n  // Generated from approved test case P009-01.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_4"
+    },
+    {
+      "id": "script_P009-02",
+      "testCaseIds": [
+        "P009-02"
+      ],
+      "filename": "p009-02.spec.ts",
+      "content": "test('P009-02 - Search by non-existent Customer ID', async ({ page }) => {\n  // Generated from approved test case P009-02.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_4"
+    },
+    {
+      "id": "script_P009-03",
+      "testCaseIds": [
+        "P009-03"
+      ],
+      "filename": "p009-03.spec.ts",
+      "content": "test('P009-03 - Verify Customer ID search field is available', async ({ page }) => {\n  // Generated from approved test case P009-03.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_4"
+    },
+    {
+      "id": "script_P010-01",
+      "testCaseIds": [
+        "P010-01"
+      ],
+      "filename": "p010-01.spec.ts",
+      "content": "test('P010-01 - Validate missing Price Reference Code', async ({ page }) => {\n  // Generated from approved test case P010-01.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_5"
+    },
+    {
+      "id": "script_P010-02",
+      "testCaseIds": [
+        "P010-02"
+      ],
+      "filename": "p010-02.spec.ts",
+      "content": "test('P010-02 - Validate invalid Price Reference Code format', async ({ page }) => {\n  // Generated from approved test case P010-02.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_5"
+    },
+    {
+      "id": "script_P010-03",
+      "testCaseIds": [
+        "P010-03"
+      ],
+      "filename": "p010-03.spec.ts",
+      "content": "test('P010-03 - Validate Price Reference Amount accepts only numeric values', async ({ page }) => {\n  // Generated from approved test case P010-03.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_5"
+    },
+    {
+      "id": "script_P006-01",
+      "testCaseIds": [
+        "P006-01"
+      ],
+      "filename": "p006-01.spec.ts",
+      "content": "test('P006-01 - Verify Departments step shows Access iFleet handoff link', async ({ page }) => {\n  // Generated from approved test case P006-01.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_6"
+    },
+    {
+      "id": "script_P006-02",
+      "testCaseIds": [
+        "P006-02"
+      ],
+      "filename": "p006-02.spec.ts",
+      "content": "test('P006-02 - Verify the handoff link navigates to iFleet', async ({ page }) => {\n  // Generated from approved test case P006-02.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_6"
+    },
+    {
+      "id": "script_P006-03",
+      "testCaseIds": [
+        "P006-03"
+      ],
+      "filename": "p006-03.spec.ts",
+      "content": "test('P006-03 - Verify Departments step reflects departments maintained in iFleet', async ({ page }) => {\n  // Generated from approved test case P006-03.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_6"
+    },
+    {
+      "id": "script_PSD-01",
+      "testCaseIds": [
+        "PSD-01"
+      ],
+      "filename": "psd-01.spec.ts",
+      "content": "test('PSD-01 - Verify wizard matches baseline test scenario document layout', async ({ page }) => {\n  // Generated from approved test case PSD-01.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_7"
+    },
+    {
+      "id": "script_PSD-02",
+      "testCaseIds": [
+        "PSD-02"
+      ],
+      "filename": "psd-02.spec.ts",
+      "content": "test('PSD-02 - Verify baseline regression scenario completes without error', async ({ page }) => {\n  // Generated from approved test case PSD-02.\n});",
+      "locatorReport": {
+        "totalLocators": 6,
+        "matchedLocators": 6,
+        "llmGeneratedLocators": 0
+      },
+      "auditLogId": "audit_prior",
+      "testScriptProjectId": "tsp_prior_7"
+    }
+  ],
+  "testScriptProjects": [
+    {
+      "id": "tsp_prior_0",
+      "releaseItemId": "US-MDUI-CUST-002",
+      "commitSha": "f1c4e02",
+      "branch": "us-mdui-cust-002-baseline"
+    },
+    {
+      "id": "tsp_prior_1",
+      "releaseItemId": "US-MDUI-CUST-003",
+      "commitSha": "f1c4e02",
+      "branch": "us-mdui-cust-003-baseline"
+    },
+    {
+      "id": "tsp_prior_2",
+      "releaseItemId": "US-MDUI-CUST-004",
+      "commitSha": "f1c4e02",
+      "branch": "us-mdui-cust-004-baseline"
+    },
+    {
+      "id": "tsp_prior_3",
+      "releaseItemId": "US-MDUI-CUST-005",
+      "commitSha": "f1c4e02",
+      "branch": "us-mdui-cust-005-baseline"
+    },
+    {
+      "id": "tsp_prior_4",
+      "releaseItemId": "STORY-009",
+      "commitSha": "f1c4e02",
+      "branch": "story-009-baseline"
+    },
+    {
+      "id": "tsp_prior_5",
+      "releaseItemId": "STORY-010",
+      "commitSha": "f1c4e02",
+      "branch": "story-010-baseline"
+    },
+    {
+      "id": "tsp_prior_6",
+      "releaseItemId": "US-MDUI-CUST-006",
+      "commitSha": "f1c4e02",
+      "branch": "us-mdui-cust-006-baseline"
+    },
+    {
+      "id": "tsp_prior_7",
+      "releaseItemId": "SPEC-DOC-000",
+      "commitSha": "f1c4e02",
+      "branch": "spec-doc-000-baseline"
+    }
+  ],
+  "testExecutions": [
+    {
+      "id": "exec_prior_1988",
+      "testScriptProjectId": "tsp_prior_0",
+      "runId": "1988",
+      "testedCommit": "f1c4e02",
+      "branch": "release-20aug-final",
+      "createdAt": "2026-08-20T16:00:00Z"
+    }
+  ],
+  "testResults": [
+    {
+      "id": "result_P002-01",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P002-01",
+      "testCaseId": "P002-01",
+      "status": "passed"
+    },
+    {
+      "id": "result_P002-02",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P002-02",
+      "testCaseId": "P002-02",
+      "status": "passed"
+    },
+    {
+      "id": "result_P002-03",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P002-03",
+      "testCaseId": "P002-03",
+      "status": "passed"
+    },
+    {
+      "id": "result_P002-04",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P002-04",
+      "testCaseId": "P002-04",
+      "status": "passed"
+    },
+    {
+      "id": "result_P002-05",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P002-05",
+      "testCaseId": "P002-05",
+      "status": "passed"
+    },
+    {
+      "id": "result_P002-06",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P002-06",
+      "testCaseId": "P002-06",
+      "status": "passed"
+    },
+    {
+      "id": "result_P002-07",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P002-07",
+      "testCaseId": "P002-07",
+      "status": "passed"
+    },
+    {
+      "id": "result_P002-08",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P002-08",
+      "testCaseId": "P002-08",
+      "status": "passed"
+    },
+    {
+      "id": "result_P002-09",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P002-09",
+      "testCaseId": "P002-09",
+      "status": "passed"
+    },
+    {
+      "id": "result_P002-10",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P002-10",
+      "testCaseId": "P002-10",
+      "status": "passed"
+    },
+    {
+      "id": "result_P003-01",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P003-01",
+      "testCaseId": "P003-01",
+      "status": "passed"
+    },
+    {
+      "id": "result_P003-02",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P003-02",
+      "testCaseId": "P003-02",
+      "status": "passed"
+    },
+    {
+      "id": "result_P003-03",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P003-03",
+      "testCaseId": "P003-03",
+      "status": "passed"
+    },
+    {
+      "id": "result_P003-04",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P003-04",
+      "testCaseId": "P003-04",
+      "status": "passed"
+    },
+    {
+      "id": "result_P003-05",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P003-05",
+      "testCaseId": "P003-05",
+      "status": "passed"
+    },
+    {
+      "id": "result_P003-06",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P003-06",
+      "testCaseId": "P003-06",
+      "status": "passed"
+    },
+    {
+      "id": "result_P004-01",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P004-01",
+      "testCaseId": "P004-01",
+      "status": "passed"
+    },
+    {
+      "id": "result_P004-02",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P004-02",
+      "testCaseId": "P004-02",
+      "status": "passed"
+    },
+    {
+      "id": "result_P004-03",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P004-03",
+      "testCaseId": "P004-03",
+      "status": "passed"
+    },
+    {
+      "id": "result_P004-04",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P004-04",
+      "testCaseId": "P004-04",
+      "status": "passed"
+    },
+    {
+      "id": "result_P005-01",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P005-01",
+      "testCaseId": "P005-01",
+      "status": "passed"
+    },
+    {
+      "id": "result_P005-02",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P005-02",
+      "testCaseId": "P005-02",
+      "status": "passed"
+    },
+    {
+      "id": "result_P005-03",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P005-03",
+      "testCaseId": "P005-03",
+      "status": "passed"
+    },
+    {
+      "id": "result_P009-01",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P009-01",
+      "testCaseId": "P009-01",
+      "status": "passed"
+    },
+    {
+      "id": "result_P009-02",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P009-02",
+      "testCaseId": "P009-02",
+      "status": "passed"
+    },
+    {
+      "id": "result_P009-03",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P009-03",
+      "testCaseId": "P009-03",
+      "status": "passed"
+    },
+    {
+      "id": "result_P010-01",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P010-01",
+      "testCaseId": "P010-01",
+      "status": "passed"
+    },
+    {
+      "id": "result_P010-02",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P010-02",
+      "testCaseId": "P010-02",
+      "status": "passed"
+    },
+    {
+      "id": "result_P010-03",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P010-03",
+      "testCaseId": "P010-03",
+      "status": "passed"
+    },
+    {
+      "id": "result_P006-01",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P006-01",
+      "testCaseId": "P006-01",
+      "status": "passed"
+    },
+    {
+      "id": "result_P006-02",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P006-02",
+      "testCaseId": "P006-02",
+      "status": "passed"
+    },
+    {
+      "id": "result_P006-03",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_P006-03",
+      "testCaseId": "P006-03",
+      "status": "passed"
+    },
+    {
+      "id": "result_PSD-01",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_PSD-01",
+      "testCaseId": "PSD-01",
+      "status": "passed"
+    },
+    {
+      "id": "result_PSD-02",
+      "testExecutionId": "exec_prior_1988",
+      "testScriptId": "script_PSD-02",
+      "testCaseId": "PSD-02",
+      "status": "passed"
+    }
+  ],
+  "activityEvents": [
+    {
+      "id": "act_p1",
+      "releaseId": "rel_20aug",
+      "type": "release_closed",
+      "summary": "Release closed \u2014 8 of 8 stories shipped clean.",
+      "actor": "Q. Analyst",
+      "timestamp": "2026-08-20T17:00:00Z"
+    },
+    {
+      "id": "act_p2",
+      "releaseId": "rel_20aug",
+      "type": "execution",
+      "summary": "Final execution completed \u2014 34 passed, 0 failed.",
+      "actor": "Q. Analyst",
+      "timestamp": "2026-08-20T16:00:00Z"
+    },
+    {
+      "id": "act_p3",
+      "releaseId": "rel_20aug",
+      "type": "script_generation",
+      "summary": "34 Playwright specs pushed to mdui-fleetnet.",
+      "actor": "Q. Analyst",
+      "timestamp": "2026-08-19T14:00:00Z"
+    },
+    {
+      "id": "act_p4",
+      "releaseId": "rel_20aug",
+      "itemId": "STORY-009",
+      "type": "case_generation",
+      "summary": "Test cases generated for Customer / Fleet Search \u2014 STORY-009.",
+      "actor": "Q. Analyst",
+      "timestamp": "2026-08-18T11:00:00Z"
+    },
+    {
+      "id": "act_p5",
+      "releaseId": "rel_20aug",
+      "type": "knowledge_answer",
+      "summary": "Knowledge Assistant answered questions on FleetNet wizard field requirements.",
+      "actor": "Q. Analyst",
+      "timestamp": "2026-08-17T15:00:00Z"
+    },
+    {
+      "id": "act_p6",
+      "releaseId": "rel_20aug",
+      "itemId": "SPEC-DOC-000",
+      "type": "upload",
+      "summary": "Specification document uploaded: MDUI_FleetNet_Wizard_Baseline_Testscenario.docx.",
+      "actor": "Q. Analyst",
+      "timestamp": "2026-08-16T10:00:00Z"
+    }
+  ]
+}

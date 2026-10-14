@@ -1,0 +1,127 @@
+# Playwright AI-DLC — CLC project configuration
+# Safe to commit: this file must never contain a credential.
+# Secrets live in .env.local (gitignored) and are referenced here as $VAR.
+
+project:
+  name: "CLC"
+  type: "webapp"            # webapp | api
+  mode: "brownfield"            # greenfield | brownfield | characterization
+
+  # greenfield       stories exist, app does not. Tests written first; expected
+  #                  to fail until the feature ships. No live exploration.
+  # brownfield       stories AND a running app. Both consulted, disagreements
+  #                  reported as discrepancies. Highest-value mode.
+  # characterization running app, no usable requirements. Tests describe current
+  #                  behaviour as-is. Nothing is called a bug.
+
+app:
+  url: "https://crewhub-qa.taconnections.com/"
+  # Auth: storage_state is declared here, but CrewHub uses its own ASP.NET
+  # Identity form (NOT Okta) and no bolt has tested restoring a storage_state
+  # session against it either way — see knowledge/project/environment-notes.md.
+  # The committed playwright.config.ts deliberately signs in per test instead,
+  # which is this kit's own baseline convention regardless of the answer, not
+  # a workaround for a confirmed CrewHub-specific problem.
+  auth:
+    strategy: "storage_state"     # storage_state | form | none
+    storage_state: ".auth/user.json"
+    user_env: "E2E_USER"          # names of vars in .env.local, NOT values
+    password_env: "E2E_PASSWORD"
+  roles: []                       # ["guest", "member", "admin"] — plan a pass per role that differs
+
+  # Optional. Backend endpoints a story's flow depends on, beyond the
+  # frontend itself. `pw-aidlc doctor` pings each before a bolt starts.
+  health_checks: []               # ["https://account-eapi-qa.ca-ce1-ch2-d-000.mule.fleetcor.com/api/v1/accounts"]
+
+source:
+  # Code-side grounding. Point this at a sibling checkout of the CLC
+  # frontend repo on the machine running the bolt (e.g. "../crewhub-ui/src") —
+  # NOT a one-off downloaded/unpacked copy, which can't be pinned to a commit
+  # and will drift from the app under test. Leave blank to plan from the live
+  # application alone; that is a normal configuration, not a fallback.
+  path: ""
+
+  # How much of the code to read before planning. The single biggest lever on
+  # how long a bolt takes to reach Gate 1.
+  #
+  #   off    Ignore the source entirely. Live app only. Discrepancy detection
+  #          disabled. This is also what a blank source.path does by itself.
+  #   scan   Mechanical scan only — routes, data-testids, aria-labels, form
+  #          fields, API calls, exact message strings, feature flags. Seconds.
+  #          Discrepancy detection is PARTIAL: string- and attribute-level
+  #          conflicts are caught, deeper logic conflicts are not.
+  #   deep   scan, plus the agent reads the files to derive validation rules,
+  #          state transitions, authorization and async behaviour. Full
+  #          discrepancy detection, and much slower on a large tree.
+  #
+  # A bolt marked `risk: high` in its intake.yml is escalated to deep
+  # automatically, and says so at Gate 1.
+  grounding: "scan"               # off | scan | deep
+
+  frontend_only: true             # true = server-side rules invisible; add a contract below
+  exclude: ["**/*.test.*", "**/__mocks__/**"]
+
+inputs:
+  stories_dir: "inputs/stories"
+  requirements_dir: "inputs/requirements"
+  contracts_dir: "inputs/contracts"     # OpenAPI / GraphQL — recovers most of what frontend_only loses
+  jira:
+    base_url: ""                # blank = manual story files only
+    project_key: ""
+    # Stories are fetched ONCE per bolt via the Atlassian MCP connector and
+    # cached to inputs/stories/<KEY>.md. Every later step reads the cache, so a
+    # run is reproducible and the reviewer sees exactly what the story said.
+    cache: true
+
+paths:
+  tests: "tests/e2e"
+  bolts: "bolts"
+  test_cases: "test-cases"
+  context: "context/app-context.md"
+  docs: "docs"
+  results: "results"
+  data: "data"
+
+knowledge:
+  inherit_org_profile: true       # knowledge/org/* — approved once, reused across projects
+  project_overrides: "knowledge/project"
+
+governance:
+  autonomy: "gated"               # gated | plan-approved | full  (Gate 1 always applies)
+  max_scenarios_per_bolt: 25
+  require_audit_log: true
+  owner: "Pranay"                 # who approves Gate 1 - was blank, so both US-CLC-001 and
+                                   # US-CLC-003's intake had to ask this every single bolt
+                                   # (2026-09-20); both were answered "Pranay"
+
+execution:
+  browsers: ["chromium"]
+  # 1, not 4 — inherited from the earlier (non-CLC) project this kit was
+  # built on, where concurrent SSO sign-ins were measured to contend with each
+  # other. CrewHub's sign-in is a plain ASP.NET Identity POST (~7s, not
+  # the SSO widget's ~25s), and no bolt has run this suite at workers > 1 to check
+  # whether an equivalent contention exists here — UNCONFIRMED for CrewHub,
+  # not a measured finding, and likely over-conservative. A bolt with
+  # headroom to spend on a live workers:2+ comparison should update this
+  # comment with what it finds either way — see playwright.config.ts's own
+  # matching comment.
+  workers: 1
+  retries: 0                      # keep 0 while authoring — retries hide races
+  capture_results: true
+  # After generation the developer is offered a run. Set false for CI/scripted use.
+  offer_run_after_generate: true
+
+test_data:
+  seed_script: ""                 # e.g. "data/seed.ts" — run before a suite
+  teardown_script: ""             # confirmed, twice (2026-09-17, 2026-09-20): Hotel Admin has no delete affordance at all - leave blank permanently, not "until confirmed"; see knowledge/project/clc-known-flaky-areas.md
+  unique_key_strategy: "timestamp"   # timestamp | uuid | none
+
+# ERK-1: push a finished bolt's results to the Workbench (connected-ai-dlc-tlc)
+# the moment e2e-bolt presents Gate 2. Optional — omit this block, or leave
+# either named var blank in .env.local, to skip pushing entirely; nothing
+# else depends on it. No release id here on purpose — the Workbench's own
+# ingest endpoint resolves the current (or soonest upcoming) release for
+# this key's project itself, at push time.
+workbench:
+  url_env: "WORKBENCH_URL"                    # names of vars in .env.local, NOT values
+  bolt_ingest_key_env: "WORKBENCH_BOLT_INGEST_KEY"

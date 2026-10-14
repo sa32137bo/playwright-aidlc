@@ -1,0 +1,116 @@
+# Playwright AI-DLC — project configuration
+# Generated {{DATE}}. Safe to commit: this file must never contain a credential.
+# Secrets live in .env.local (gitignored) and are referenced here as $VAR.
+
+project:
+  name: "{{PROJECT}}"
+  type: "{{TYPE}}"            # webapp | api
+  mode: "{{MODE}}"            # greenfield | brownfield | characterization
+
+  # greenfield       stories exist, app does not. Tests written first; expected
+  #                  to fail until the feature ships. No live exploration.
+  # brownfield       stories AND a running app. Both consulted, disagreements
+  #                  reported as discrepancies. Highest-value mode.
+  # characterization running app, no usable requirements. Tests describe current
+  #                  behaviour as-is. Nothing is called a bug.
+
+app:
+  url: "{{APP_URL}}"
+  # Auth: prefer storageState — authenticate once in the seed test and reuse the
+  # session. Never put a password in a test file or in this config.
+  auth:
+    strategy: "storage_state"     # storage_state | form | none
+    storage_state: ".auth/user.json"
+    user_env: "E2E_USER"          # names of vars in .env.local, NOT values
+    password_env: "E2E_PASSWORD"
+  roles: []                       # ["guest", "member", "admin"] — plan a pass per role that differs
+
+  # Optional. Backend endpoints a story's flow depends on, beyond the
+  # frontend itself. `pw-aidlc doctor` pings each before a bolt starts — a
+  # frontend can be up while an API behind one specific save is down, and
+  # that is otherwise only discovered live, mid-bolt, via a failing test.
+  health_checks: []               # ["https://api.example.com/v1/accounts"]
+
+source:
+  # Code-side grounding. May point at a sibling checkout if tests live in their
+  # own repo (e.g. "../crewhub-ui/src"). Leave blank and the kit plans from
+  # the live application alone — no error, nothing to configure.
+  path: "{{SRC}}"
+
+  # How much of the code to read before planning. The single biggest lever on
+  # how long a bolt takes to reach Gate 1.
+  #
+  #   off    Ignore the source entirely. Live app only. Discrepancy detection
+  #          disabled. This is also what a blank source.path does by itself.
+  #   scan   Mechanical scan only — routes, data-testids, aria-labels, form
+  #          fields, API calls, exact message strings, feature flags. Seconds.
+  #          Discrepancy detection is PARTIAL: string- and attribute-level
+  #          conflicts are caught, deeper logic conflicts are not.
+  #   deep   scan, plus the agent reads the files to derive validation rules,
+  #          state transitions, authorization and async behaviour. Full
+  #          discrepancy detection, and much slower on a large tree.
+  #
+  # A bolt marked `risk: high` in its intake.yml is escalated to deep
+  # automatically, and says so at Gate 1.
+  #
+  # Tip: deep is cheap when the scope is small. Prefer
+  #   pw-aidlc context --depth deep --paths "src/checkout/**"
+  # over deep across the whole application.
+  grounding: "scan"               # off | scan | deep
+
+  frontend_only: true             # true = server-side rules invisible; add a contract below
+  exclude: ["**/*.test.*", "**/__mocks__/**"]
+
+inputs:
+  stories_dir: "inputs/stories"
+  requirements_dir: "inputs/requirements"
+  contracts_dir: "inputs/contracts"     # OpenAPI / GraphQL — recovers most of what frontend_only loses
+  jira:
+    base_url: "{{JIRA}}"                # blank = manual story files only
+    project_key: ""
+    # Stories are fetched ONCE per bolt via the Atlassian MCP connector and
+    # cached to inputs/stories/<KEY>.md. Every later step reads the cache, so a
+    # run is reproducible and the reviewer sees exactly what the story said.
+    cache: true
+
+paths:
+  tests: "{{TESTS_DIR}}"
+  bolts: "bolts"
+  test_cases: "test-cases"
+  context: "context/app-context.md"
+  docs: "docs"
+  results: "results"
+  data: "data"
+
+knowledge:
+  inherit_org_profile: true       # knowledge/org/* — approved once, reused across projects
+  project_overrides: "knowledge/project"
+
+governance:
+  autonomy: "gated"               # gated | plan-approved | full  (Gate 1 always applies)
+  max_scenarios_per_bolt: 25
+  require_audit_log: true
+  owner: ""                       # who approves Gate 1
+
+execution:
+  browsers: ["chromium"]
+  workers: 4
+  retries: 0                      # keep 0 while authoring — retries hide races
+  capture_results: true
+  # After generation the developer is offered a run. Set false for CI/scripted use.
+  offer_run_after_generate: true
+
+test_data:
+  seed_script: ""                 # e.g. "data/seed.ts" — run before a suite
+  teardown_script: ""
+  unique_key_strategy: "timestamp"   # timestamp | uuid | none
+
+# ERK-1: push a finished bolt's results to the Workbench (connected-ai-dlc-tlc)
+# the moment e2e-bolt presents Gate 2. Optional — omit this block, or leave
+# either named var blank in .env.local, to skip pushing entirely; nothing
+# else depends on it. No release id here on purpose — the Workbench's own
+# ingest endpoint resolves the current (or soonest upcoming) release for
+# this key's project itself, at push time.
+workbench:
+  url_env: "WORKBENCH_URL"                    # names of vars in .env.local, NOT values
+  bolt_ingest_key_env: "WORKBENCH_BOLT_INGEST_KEY"

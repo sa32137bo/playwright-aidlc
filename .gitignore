@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Packaged tarballs from `npm pack`
+*.tgz
+
+# Credentials — never commit
+.env
+.env.local
+.env.*.local
+.auth/
+storageState*.json
+
+# Editor / OS
+# .vscode/* (not .vscode/) — same bare-directory bug as results/ below:
+# a bare exclusion stops git descending into it at all, so the negation
+# for mcp.json (a real, shared kit artifact, not personal editor config)
+# could never take effect. Confirmed live: it silently never staged.
+.vscode/*
+!.vscode/mcp.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+*.log
+
+# This repo also carries the MDUI project itself — its bolt run output.
+# results/* (not results/) — a bare directory exclusion stops git descending
+# into it at all, so the negation below could never take effect. Confirmed
+# live: a real bolt run found results/summary.md silently never staged.
+/test-results/
+/playwright-report/
+/blob-report/
+results/*
+!results/summary.md
+!results/.gitkeep
+!results/*.result.json
+
+# Python packaging helper/test caches
+__pycache__/
+*.pyc

@@ -1,0 +1,12 @@
+{
+  "name": "pw-aidlc-kit",
+  "version": "2.0.0",
+  "description": "Playwright AI-DLC kit — gated, source-grounded E2E test generation for Claude Code",
+  "type": "module",
+  "bin": { "pw-aidlc": "./bin/pw-aidlc.mjs" },
+  "engines": { "node": ">=18" },
+  "files": ["bin", "lib", "templates", "skills", "commands", "scripts", "GETTING-STARTED.md", "RUNBOOK.md", "INSTALL.md", "README.md", "KNOWN-LIMITATIONS.md"],
+  "scripts": { "test": "node --check bin/pw-aidlc.mjs && node tests/test_story_diff.mjs && node tests/test_matrix_binding.mjs && node tests/test_org_knowledge_sync.mjs" },
+  "license": "UNLICENSED",
+  "private": true
+}
